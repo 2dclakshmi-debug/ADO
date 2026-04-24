@@ -1,0 +1,47 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="ADO.login" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <style type="text/css">
+        .auto-style1 {
+            width: 36%;
+            height: 41px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <table class="auto-style1" align="center">
+                <tr>
+                    <td><asp:Label ID="lblUname" runat="server" Text="UserName :"></asp:Label></td>
+                    <td>
+                        <asp:TextBox ID="txtuname" runat="server"></asp:TextBox></td>
+                    <td><asp:RequiredFieldValidator ID="rfvuname" runat="server" ErrorMessage="please enter username"
+                        ControlToValidate="txtuname" ForeColor="Red"></asp:RequiredFieldValidator></td>
+                </tr>
+                <tr>
+                    <td><asp:Label ID="lblpwd" runat="server" Text="Password :"></asp:Label></td>
+                    <td> <asp:TextBox ID="txtpwd" runat="server"></asp:TextBox></td>
+                    <td><asp:RequiredFieldValidator ID="rfvpwd" runat="server" ForeColor="Red" 
+                        ControlToValidate="txtpwd" 
+                        ErrorMessage="Password is mandatory"></asp:RequiredFieldValidator></td>
+                        
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><asp:Button ID="btnsubmit" runat="server" Text="Submit" OnClick="btnsubmit_Click" /></td>
+                    <td></td>
+                </tr>
+            </table>
+
+
+
+
+        </div>
+    </form>
+</body>
+</html>
