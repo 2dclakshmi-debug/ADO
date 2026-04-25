@@ -33,12 +33,30 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><asp:Button ID="btnsubmit" runat="server" Text="Submit" OnClick="btnsubmit_Click" /></td>
+                    <td><asp:Button ID="btnupdate" runat="server" Text="Update" OnClick="btnupdate_Click"  />
+                    <asp:Button ID="btnsubmit" runat="server" Text="Submit" OnClick="btnsubmit_Click" />
+                    <asp:Button ID="btndelete" runat="server" Text="Delete" OnClick="btndelete_Click" /></td>
                     <td></td>
                 </tr>
             </table>
-
-
+            <br /><br />
+            <table align="center">
+                <tr>
+                    <td><asp:Label ID="lblsearch" runat="server" Text="Search :"></asp:Label>
+                        <asp:TextBox ID="txtsearch" runat="server"></asp:TextBox><br />
+                    </td>
+                    <td><asp:Button ID="btnsearch" runat="server" Text="Search" OnClick="btnsearch_Click" /></td>
+                    
+</tr>
+  </table>
+            <br />
+            <table align="center">
+                <tr>
+               <td>
+            <asp:GridView ID="grdData" AlternatingRowStyle-HorizontalAlign="Center" runat="server"></asp:GridView>
+</td>
+                </tr>
+            </table>
 
 
         </div>
