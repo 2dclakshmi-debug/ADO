@@ -17,14 +17,14 @@
         <div>
             <table class="auto-style1" align="center">
                 <tr>
-                    <td><asp:Label ID="lblUname" runat="server" Text="UserName :"></asp:Label></td>
+                    <td><asp:Label ID="lblUname" runat="server" Text="username :"></asp:Label></td>
                     <td>
                         <asp:TextBox ID="txtuname" runat="server"></asp:TextBox></td>
                     <td><asp:RequiredFieldValidator ID="rfvuname" runat="server" ErrorMessage="please enter username"
                         ControlToValidate="txtuname" ForeColor="Red"></asp:RequiredFieldValidator></td>
                 </tr>
                 <tr>
-                    <td><asp:Label ID="lblpwd" runat="server" Text="Password :"></asp:Label></td>
+                    <td><asp:Label ID="lblpwd" runat="server" Text="password :"></asp:Label></td>
                     <td> <asp:TextBox ID="txtpwd" runat="server"></asp:TextBox></td>
                     <td><asp:RequiredFieldValidator ID="rfvpwd" runat="server" ForeColor="Red" 
                         ControlToValidate="txtpwd" 
@@ -53,12 +53,45 @@
             <table align="center">
                 <tr>
                <td>
-            <asp:GridView ID="grdData" AlternatingRowStyle-HorizontalAlign="Center" runat="server"></asp:GridView>
-</td>
+            <asp:GridView ID="grdData"  runat="server" 
+                AutoGenerateColumns="false" DataKeyNames="uid"
+                AllowPaging="true" PageSize="5"
+                OnPageIndexChanging="grdData_PageIndexChanging"
+                OnRowCancelingEdit="grdData_RowCancelingEdit"
+                OnRowEditing="grdData_RowEditing" OnRowUpdating="grdData_RowUpdating" OnRowDeleting="grdData_RowDeleting">
+                   <Columns>
+                       <asp:TemplateField HeaderText="username">
+                           <ItemTemplate>
+                               <asp:Label ID="lbluname" runat="server" Text='<%#Bind("username") %>'></asp:Label>
+                           </ItemTemplate>
+                           <EditItemTemplate>
+                               <asp:TextBox ID="Txtuname" runat="server" Text='<%#Bind("username") %>'></asp:TextBox>
+                           </EditItemTemplate>
+                       </asp:TemplateField>
+                       <asp:TemplateField HeaderText="Password">
+                           <ItemTemplate>
+                               <asp:Label ID="lblpwd" runat="server" Text='<%#Bind("password") %>'></asp:Label>
+                           </ItemTemplate>
+                           <EditItemTemplate>
+                               <asp:TextBox ID="txtpwd" runat="server" Text='<%#Bind("password") %>'></asp:TextBox>
+                           </EditItemTemplate>
+                       </asp:TemplateField>
+                       <asp:TemplateField HeaderText="Actions">
+                           <ItemTemplate>
+                               <asp:Button ID="btnEdit" runat="server" Text="EDIT" CommandName="Edit" />
+                               <asp:Button ID="btnsdelete" runat="server" Text="Delete" CommandName="Delete" />\
+                           </ItemTemplate>
+                           <EditItemTemplate>
+                                <asp:Button ID="btnsupdate" runat="server" Text="Update" CommandName="Update" />
+                                <asp:Button ID="btncancel" runat="server" Text="Cancel" CommandName="Cancel" />
+                            </EditItemTemplate>
+                          
+                       </asp:TemplateField>
+                   </Columns>
+                </asp:GridView>
+               </td>
                 </tr>
             </table>
-
-
         </div>
     </form>
 </body>
