@@ -87,13 +87,13 @@ namespace ADO
         protected global::System.Web.UI.WebControls.Label lblgender;
 
         /// <summary>
-        /// rblgender control.
+        /// txtgender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblgender;
+        protected global::System.Web.UI.WebControls.TextBox txtgender;
 
         /// <summary>
         /// rfvgender control.
@@ -114,31 +114,13 @@ namespace ADO
         protected global::System.Web.UI.WebControls.Label lbldob;
 
         /// <summary>
-        /// ddlday control.
+        /// txtdob control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlday;
-
-        /// <summary>
-        /// ddlmonth control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlmonth;
-
-        /// <summary>
-        /// ddlyear control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlyear;
+        protected global::System.Web.UI.WebControls.TextBox txtdob;
 
         /// <summary>
         /// rfvdob control.
@@ -258,22 +240,22 @@ namespace ADO
         protected global::System.Web.UI.WebControls.Label lblhobbies;
 
         /// <summary>
-        /// cblhobbies control.
+        /// txthobbies control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList cblhobbies;
+        protected global::System.Web.UI.WebControls.TextBox txthobbies;
 
         /// <summary>
-        /// customvhobbies control.
+        /// rfvhibbies control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator customvhobbies;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvhibbies;
 
         /// <summary>
         /// lblmobile control.

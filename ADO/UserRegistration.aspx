@@ -32,24 +32,16 @@
                  <tr>
                        <td><asp:Label ID="lblgender" runat="server" Text="Gender :"></asp:Label></td>
                         <td>
-                            <asp:RadioButtonList ID="rblgender" runat="server" AutoPostBack="true">
-                                <asp:ListItem>Male</asp:ListItem>
-                                <asp:ListItem>Female</asp:ListItem>
-                                <asp:ListItem>Others</asp:ListItem>
-                            </asp:RadioButtonList></td>
-                  <td>
-                         <asp:RequiredFieldValidator ID="rfvgender" runat="server" ControlToValidate="rblgender"
-                          ErrorMessage=" plese select gender" ForeColor="Red"></asp:RequiredFieldValidator> </td>
+                           <asp:TextBox ID="txtgender" runat="server"></asp:TextBox></td>
+                      <td>
+                         <asp:RequiredFieldValidator ID="rfvgender" runat="server" ControlToValidate="txtgender"
+                          ErrorMessage=" plese enter gender" ForeColor="Red"></asp:RequiredFieldValidator> </td>
                </tr>
                   <tr>
-                               <td><asp:Label ID="lbldob" runat="server" Text="DateOfBirth :"></asp:Label><br />
-                                   <asp:DropDownList ID= "ddlday" runat="server" AutoPostBack="true"></asp:DropDownList>
-                               </td>
-                                 <td><asp:DropDownList ID="ddlmonth" runat="server" AutoPostBack="true"></asp:DropDownList> </td>
-                 <td>
-                             <asp:DropDownList ID="ddlyear" runat="server" AutoPostBack="true"></asp:DropDownList>
-                            <asp:RequiredFieldValidator ID="rfvdob" runat="server" ControlToValidate="ddlday"
-                            ErrorMessage =" plese select dob" ForeColor="Red"></asp:RequiredFieldValidator> </td>
+                               <td><asp:Label ID="lbldob" runat="server" Text="DateOfBirth :"></asp:Label></td>
+                                <td ><asp:TextBox ID="txtdob" runat="server"></asp:TextBox></td> 
+                           <td> <asp:RequiredFieldValidator ID="rfvdob" runat="server" ControlToValidate="txtdob"
+                            ErrorMessage =" plese enter dob" ForeColor="Red"></asp:RequiredFieldValidator> </td>
               </tr>
                   <tr>
                         <td><asp:Label ID="lblpwd" runat="server" Text="Password :"></asp:Label></td>
@@ -80,15 +72,10 @@
                    </tr>
                   <tr>
                               <td><asp:Label ID="lblhobbies" runat="server" Text="Hobbies :"></asp:Label></td>
-                                      <td>
-                                          <asp:CheckBoxList ID="cblhobbies" runat="server" AutoPostBack="true">
-                                              <asp:ListItem>Reading</asp:ListItem>
-                                              <asp:ListItem>Coding</asp:ListItem>
-                                              <asp:ListItem>Browsing</asp:ListItem>
-                                          </asp:CheckBoxList></td>
-                                    <td> <asp:CustomValidator ID="customvhobbies" runat="server" 
-                                        ErrorMessage ="CustomValidator" OnServerValidate="customvhobbies_ServerValidate" ForeColor="Red"></asp:CustomValidator></td>
-                </tr>
+                                      <td><asp:TextBox ID="txthobbies" runat="server"></asp:TextBox></td>
+                     <td>  <asp:RequiredFieldValidator ID="rfvhibbies" runat="server" ControlToValidate="txthobbies"
+                             ErrorMessage =" plese enter hobbies" ForeColor="Red"></asp:RequiredFieldValidator></td>
+                      </tr>
                   <tr>
                                    <td><asp:Label ID="lblmobile" runat="server" Text="Mobile :"></asp:Label></td>
                                     <td><asp:TextBox ID="txtmobile" runat="server"></asp:TextBox></td>
@@ -112,12 +99,99 @@
                     <td><asp:TextBox ID="txtsearch" runat="server" PlaceHolder="data search here"></asp:TextBox></td>
                     <td><asp:Button ID="btnsearch" runat="server" Text="Search"  CausesValidation="false" OnClick="btnsearch_Click" style="height: 29px" /></td>
                 </tr>
+                </table><br />
+            <table align="center">
                 <tr>
                     <td>
-                        <asp:GridView ID="griddata" runat="server"></asp:GridView>
+                        <asp:GridView ID="griddata" runat="server" 
+                            AllowPaging="true" PageSize="5" 
+                            AutoGenerateColumns="false" OnPageIndexChanging="griddata_PageIndexChanging" DataKeyNames="mobilenumber"
+                            OnRowCancelingEdit="griddata_RowCancelingEdit" OnRowDeleting="griddata_RowDeleting"
+                            OnRowEditing="griddata_RowEditing" OnRowUpdating="griddata_RowUpdating">
+                            <Columns>
+                                <asp:TemplateField HeaderText="FirstName">
+                                 <ItemTemplate>
+                                     <asp:Label ID="lblfname" runat="server" Text='<%#Bind("firstname")%>'></asp:Label>
+                                 </ItemTemplate>
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtfirstname" runat="server" Text='<%#Bind("firstname") %>'></asp:TextBox>
+                                    </EditItemTemplate>
+                                   </asp:TemplateField>
+                                 <asp:TemplateField HeaderText="LaststName">
+                                   <ItemTemplate>
+                                   <asp:Label ID="lbllname" runat="server" Text='<%#Bind("lastname")%>'></asp:Label>
+                                      </ItemTemplate>
+                                   <EditItemTemplate>
+                                 <asp:TextBox ID="txtlastname" runat="server" Text='<%#Bind("lastname") %>'></asp:TextBox>
+                                    </EditItemTemplate>
+                                       </asp:TemplateField>
+                                 <asp:TemplateField HeaderText="Gender">
+                                      <ItemTemplate>
+                                        <asp:Label ID="lblgender" runat="server" Text='<%#Bind("gender")%>'></asp:Label>
+                                       </ItemTemplate>
+                                     <EditItemTemplate>
+                                        <asp:TextBox ID="txtgender" runat="server" Text='<%#Bind("gender") %>'></asp:TextBox>
+                                    </EditItemTemplate>
+                               </asp:TemplateField>
+                                 <asp:TemplateField HeaderText="DateofBirth">
+                                <ItemTemplate>
+                                   <asp:Label ID="lbldob" runat="server" Text='<%#Bind("dateofbirth")%>'></asp:Label>
+                                </ItemTemplate>
+                             <EditItemTemplate>
+                               <asp:TextBox ID="txtdob" runat="server" Text='<%#Bind("dateofbirth") %>'></asp:TextBox>
+                             </EditItemTemplate>
+                                </asp:TemplateField>
+                                 <asp:TemplateField HeaderText="password">
+                         <ItemTemplate>
+                            <asp:Label ID="lblpwd" runat="server" Text='<%#Bind("password")%>'></asp:Label>
+                         </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txtpwd" runat="server" Text='<%#Bind("password") %>'></asp:TextBox>
+                        </EditItemTemplate>
+                       </asp:TemplateField>
+               
+                  <asp:TemplateField HeaderText="Age">
+                         <ItemTemplate>
+                         <asp:Label ID="lblage" runat="server" Text='<%#Bind("age")%>'></asp:Label>
+                         </ItemTemplate>
+                    <EditItemTemplate>
+                    <asp:TextBox ID="txtage" runat="server" Text='<%#Bind("age") %>'></asp:TextBox>
+                  </EditItemTemplate>
+              </asp:TemplateField>
+
+                     <asp:TemplateField HeaderText="Hobbies">
+                       <ItemTemplate>
+                          <asp:Label ID="lblhobbies" runat="server" Text='<%#Bind("hobbies")%>'></asp:Label>
+                      </ItemTemplate>
+                     <EditItemTemplate>
+                        <asp:TextBox ID="txthobbies" runat="server" Text='<%#Bind("hobbies") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                      </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Mobilenumber">
+                      <ItemTemplate>
+                         <asp:Label ID="lblmobile" runat="server" Text='<%#Bind("mobilenumber")%>'></asp:Label>
+                     </ItemTemplate>
+                      <EditItemTemplate>
+                            <asp:TextBox ID="txtmobile" runat="server" Text='<%#Bind("mobilenumber") %>'></asp:TextBox>
+                      </EditItemTemplate>
+                     </asp:TemplateField>
+                       <asp:TemplateField HeaderText="Actions">
+                         <ItemTemplate>
+                             <asp:Button ID="btnedit" runat="server" Text="Edit" CommandName="Edit" />
+                             <asp:Button ID="btndelete" runat="server" Text="Delete" CommandName="Delete" />
+                        </ItemTemplate>
+                      <EditItemTemplate>
+                         <asp:Button ID="btnupdate" runat="server" Text="Update" CommandName="Update" />
+                          <asp:Button ID="btncancel" runat="server" Text="Cancel" CommandName="Cancel" />
+                       </EditItemTemplate>
+                       </asp:TemplateField>
+                            </Columns>
+                            
+                        </asp:GridView>
                     </td>
                 </tr>
             </table>
+            
 
         </div>
     </form>

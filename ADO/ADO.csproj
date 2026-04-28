@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="login.aspx" />
+    <Content Include="loginform practice.aspx" />
     <Content Include="UserRegistration.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -78,6 +79,13 @@
     </Compile>
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="loginform practice.aspx.cs">
+      <DependentUpon>loginform practice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="loginform practice.aspx.designer.cs">
+      <DependentUpon>loginform practice.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserRegistration.aspx.cs">

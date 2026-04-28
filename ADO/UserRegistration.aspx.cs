@@ -18,50 +18,10 @@ namespace ADO
 
             if (!IsPostBack)
             {
-                BindDOB();
+               
                 LoadData();
             }
-        }
-            // -------------------- DOB DROPDOWN --------------------
-            void BindDOB()
-            {
-                // Day
-                ddlday.Items.Add("--Day--");
-                for (int i = 1; i <= 31; i++)
-                    ddlday.Items.Add(i.ToString());
-
-                // Month
-                ddlmonth.Items.Add("--Month--");
-                for (int i = 1; i <= 12; i++)
-                    ddlmonth.Items.Add(i.ToString());
-
-                // Year
-                ddlyear.Items.Add("--Year--");
-                for (int i = 1990; i <= DateTime.Now.Year; i++)
-                    ddlyear.Items.Add(i.ToString());
-            }
-            string GetHobbies()
-            {
-                var selected = cblhobbies.Items.Cast<System.Web.UI.WebControls.ListItem>()
-                                 .Where(i => i.Selected)
-                                 .Select(i => i.Text);
-
-                return string.Join(",", selected);
-            }
-
-        string GetDOB()
-        {
-            if (ddlday.SelectedIndex == 0 || ddlmonth.SelectedIndex == 0 || ddlyear.SelectedIndex == 0)
-                return null;
-
-            DateTime dob = new DateTime(
-                Convert.ToInt32(ddlyear.SelectedValue),
-                Convert.ToInt32(ddlmonth.SelectedValue),
-                Convert.ToInt32(ddlday.SelectedValue)
-            );
-
-            return dob.ToString("yyyy-MM-dd");
-        }
+        } 
             void ClearForm()
             {
                 txtfname.Text = "";
@@ -69,19 +29,12 @@ namespace ADO
                 txtpwd.Text = "";
                 txtage.Text = "";
                 txtmobile.Text = "";
+                txtdob.Text = "";
+                txthobbies.Text = "";
+                txtgender.Text = "";
+                txtconfirmpwd.Text = "";
 
-                rblgender.ClearSelection();
-
-                // Reset DOB dropdowns
-                ddlday.SelectedIndex = 0;
-                ddlmonth.SelectedIndex = 0;
-                ddlyear.SelectedIndex = 0;
-
-                // Uncheck hobbies
-                foreach (ListItem item in cblhobbies.Items)
-                {
-                    item.Selected = false;
-                }
+               
             }
 
         
@@ -96,11 +49,11 @@ namespace ADO
 
                     cmd.Parameters.AddWithValue("@fname", txtfname.Text);
                     cmd.Parameters.AddWithValue("@lname", txtlname.Text);
-                    cmd.Parameters.AddWithValue("@gender", rblgender.SelectedValue);
-                    cmd.Parameters.AddWithValue("@dob", GetDOB());
+                    cmd.Parameters.AddWithValue("@gender", txtgender.Text);
+                    cmd.Parameters.AddWithValue("@dob", txtdob.Text);
                     cmd.Parameters.AddWithValue("@pwd", txtpwd.Text);
                     cmd.Parameters.AddWithValue("@age", txtage.Text);
-                    cmd.Parameters.AddWithValue("@hobbies", GetHobbies());
+                    cmd.Parameters.AddWithValue("@hobbies",txthobbies.Text);
                     cmd.Parameters.AddWithValue("@mobile", txtmobile.Text);
 
                     conn.Open();
@@ -112,7 +65,7 @@ namespace ADO
             }
         
         }
-        // -------------------- LOAD GRID --------------------
+        
         void LoadData()
         {
             using (SqlConnection conn = new SqlConnection(cs))
@@ -130,46 +83,46 @@ namespace ADO
 
         protected void btnupdate_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection(cs))
-            {
-                string query = "UPDATE regtable SET FirstName=@fname, LastName=@lname, Gender=@gender, DateofBirth=@dob, Password=@pwd, Age=@age, Hobbies=@hobbies WHERE Mobilenumber=@mobile";
+            //using (SqlConnection conn = new SqlConnection(cs))
+            //{
+            //    string query = "UPDATE regtable SET FirstName=@fname, LastName=@lname, Gender=@gender, DateofBirth=@dob, Password=@pwd, Age=@age, Hobbies=@hobbies WHERE Mobilenumber=@mobile";
 
-                SqlCommand cmd = new SqlCommand(query, conn);
+            //    SqlCommand cmd = new SqlCommand(query, conn);
 
-                cmd.Parameters.AddWithValue("@fname", txtfname.Text);
-                cmd.Parameters.AddWithValue("@lname", txtlname.Text);
-                cmd.Parameters.AddWithValue("@gender", rblgender.SelectedValue);
-                cmd.Parameters.AddWithValue("@dob", GetDOB());
-                cmd.Parameters.AddWithValue("@pwd", txtpwd.Text);
-                cmd.Parameters.AddWithValue("@age", txtage.Text);
-                cmd.Parameters.AddWithValue("@hobbies", GetHobbies());
-                cmd.Parameters.AddWithValue("@mobile", txtmobile.Text);
+            //    cmd.Parameters.AddWithValue("@fname", txtfname.Text);
+            //    cmd.Parameters.AddWithValue("@lname", txtlname.Text);
+            //    cmd.Parameters.AddWithValue("@gender", rblgender.SelectedValue);
+            //    cmd.Parameters.AddWithValue("@dob", GetDOB());
+            //    cmd.Parameters.AddWithValue("@pwd", txtpwd.Text);
+            //    cmd.Parameters.AddWithValue("@age", txtage.Text);
+            //    cmd.Parameters.AddWithValue("@hobbies", GetHobbies());
+            //    cmd.Parameters.AddWithValue("@mobile", txtmobile.Text);
 
-                conn.Open();
-                cmd.ExecuteNonQuery();
+            //    conn.Open();
+            //    cmd.ExecuteNonQuery();
 
-                LoadData();
-                ClearForm();
-            }
+            //    LoadData();
+            //    ClearForm();
+            //}
         
         }
 
         protected void btndelete_Click(object sender, EventArgs e)
         {
             
-            using (SqlConnection conn = new SqlConnection(cs))
-            {
-                string query = "DELETE FROM regtable WHERE Mobilenumber=@mobile";
-                SqlCommand cmd = new SqlCommand(query, conn);
+            //using (SqlConnection conn = new SqlConnection(cs))
+            //{
+            //    string query = "DELETE FROM regtable WHERE Mobilenumber=@mobile";
+            //    SqlCommand cmd = new SqlCommand(query, conn);
 
-                cmd.Parameters.AddWithValue("@mobile", txtmobile.Text);
+            //    cmd.Parameters.AddWithValue("@mobile", txtmobile.Text);
 
-                conn.Open();
-                cmd.ExecuteNonQuery();
+            //    conn.Open();
+            //    cmd.ExecuteNonQuery();
 
-                LoadData();
-                ClearForm();
-            }
+            //    LoadData();
+            //    ClearForm();
+            //}
         
 
         }
@@ -191,9 +144,71 @@ namespace ADO
             }
         }
 
-        protected void customvhobbies_ServerValidate(object source, ServerValidateEventArgs args)
+       
+
+        protected void griddata_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            args.IsValid = cblhobbies.Items.Cast<System.Web.UI.WebControls.ListItem>().Any(i => i.Selected);
+            griddata.PageIndex=e.NewPageIndex;
+            LoadData();
+        }
+
+        protected void griddata_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            griddata.EditIndex = e.NewEditIndex;
+            LoadData();
+        }
+
+        protected void griddata_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            griddata.EditIndex = -1;
+            LoadData();
+        }
+
+        protected void griddata_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            //string cs = "Data Source=.;Initial Catalog=registrationdb;Integrated Security=True";
+            SqlConnection conn = new SqlConnection(cs);
+            conn.Open();
+            GridViewRow grd = griddata.Rows[e.RowIndex];
+            string firstname = ((TextBox)grd.FindControl("txtfirstname")).Text;
+            string Lastname = ((TextBox)grd.FindControl("txtlastname")).Text;
+            string gender = ((TextBox)grd.FindControl("txtgender")).Text;
+            string DateofBirth= ((TextBox)grd.FindControl("txtdob")).Text;
+            string password = ((TextBox)grd.FindControl("txtpwd")).Text;
+            string age = ((TextBox)grd.FindControl("txtage")).Text;
+            string hobbies = ((TextBox)grd.FindControl("txthobbies")).Text;
+            string mobilenumber = ((TextBox)grd.FindControl("txtmobile")).Text;
+            SqlCommand cmd =new SqlCommand("update regtable set firstname=@firstname,"+
+                "lastname=@lastname,"+"gender=@gender,"+"DateofBirth=@DateofBirth,"+
+                "password=@password,"+"age=@age,"+"Hobbies=@hobbies where mobilenumber=@mobilenumber",conn);
+            cmd.Parameters.AddWithValue("@firstname",firstname);
+            cmd.Parameters.AddWithValue("@lastname", Lastname);
+            cmd.Parameters.AddWithValue("@gender", gender);
+            cmd.Parameters.AddWithValue("@DateofBirth", DateofBirth);
+            cmd.Parameters.AddWithValue("@password", password);
+            cmd.Parameters.AddWithValue("@age", age);
+            cmd.Parameters.AddWithValue("@hobbies", hobbies);
+            cmd.Parameters.AddWithValue("@mobilenumber", mobilenumber);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            LoadData();
+        }
+
+        protected void griddata_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            //string cs = "Data Source=.;Initial Catalog=registrationdb;Integrated Security=True";
+            SqlConnection conn = new SqlConnection(cs);
+            conn.Open();
+            GridViewRow grd = griddata.Rows[e.RowIndex];
+
+            string mobilenumber = griddata.DataKeys[e.RowIndex].Value.ToString();
+    
+            SqlCommand cmd = new SqlCommand("delete from regtable where mobilenumber=@mobilenumber", conn);
+            cmd.Parameters.AddWithValue("@mobilenumber", mobilenumber);
+            
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            LoadData();
         }
     }
 
